@@ -1,72 +1,61 @@
-# Ambiente de desenvolvimento Scala com DevContainer
+# Aula - Avaliação Preguiçosa
 
-Este repositório contém um ambiente de desenvolvimento pré-configurado utilizando **DevContainer** para a disciplina de Programação Funcional em Scala.
+Este projeto contém uma coleção abrangente de exemplos práticos que demonstram conceitos fundamentais de **avaliação preguiçosa** (lazy evaluation), **memoização**, **listas preguiçosas**, **estratégias de avaliação de parâmetros** e outros tópicos importantes de programação funcional em Scala.
 
-## O que é um DevContainer?
-Um DevContainer é um ambiente de desenvolvimento isolado, baseado em containers, que garante que todos os alunos tenham as mesmas ferramentas e configurações, facilitando o desenvolvimento e evitando problemas de incompatibilidade.
+### Objetivos pedagógicos
 
-## Ferramentas disponíveis
-- **Scala**: Linguagem principal do curso.
-- **Metals**: Extensão do VS Code que provê um language server para suporte avançado a Scala (autocompletar, lint, refatoração, etc).
-- **SBT**: Ferramenta de build para projetos Scala.
+Os exemplos foram criados especificamente para ajudar os estudantes a:
+- Compreender as diferenças entre avaliação eager (ansiosa) e lazy (preguiçosa)
+- Entender as estratégias de avaliação: call-by-value, call-by-name e call-by-need
+- Aplicar técnicas de memoização para otimização de performance
+- Trabalhar com estruturas de dados preguiçosas (LazyList)
+- Implementar operadores lógicos com short-circuit personalizado
 
-## Como utilizar
+### Estrutura dos exemplos
 
-### 1. Usando o GitHub Codespaces (recomendado)
-O **GitHub Codespaces** permite que você abra este projeto em um ambiente de desenvolvimento completo, direto no navegador, sem precisar instalar nada na sua máquina. Basta clicar no botão **"Code"** no repositório do GitHub e selecionar **"Open with Codespaces"** (ou "Abrir com Codespaces").
+Cada arquivo em `src/main/scala` aborda um conceito específico, com comentários didáticos detalhados (em inglês) explicando o funcionamento e os conceitos envolvidos:
 
-- O Codespaces já configura automaticamente o DevContainer.
-- Todas as ferramentas estarão prontas para uso.
-- Basta abrir o terminal integrado e usar os comandos normalmente (`sbt compile`, `sbt run`, etc).
-- **Esta é a forma preferencial de uso, pois elimina problemas de configuração local.**
+#### Conceitos fundamentais
+- **`Bindings.scala`**: Demonstra como bindings (val) funcionam em Scala e a ordem de avaliação
+- **`LazyExample.scala`**: Compara avaliação eager vs lazy usando `val` e `lazy val`
+- **`HeavyComputation.scala`**: Mostra uso prático de `lazy val` para evitar computações custosas desnecessárias
 
-### 2. Usando Docker e VS Code localmente
-Caso prefira rodar localmente:
+#### Estratégias de avaliação de parâmetros
+- **`CallByValue.scala`**: Demonstra call-by-value (argumentos avaliados antes da chamada da função)
+- **`CallByName.scala`**: Demonstra call-by-name com e sem parênteses (argumentos avaliados quando usados)
+- **`CallByNeed.scala`**: Compara as três estratégias usando exemplos de divisão, mostrando as diferenças de performance
 
-1. **Pré-requisitos**:
-   - Tenha o [Docker](https://www.docker.com/) instalado em sua máquina.
-   - Instale o [Visual Studio Code](https://code.visualstudio.com/) e a extensão [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
+#### Estruturas de dados preguiçosas
+- **`LazyListBasics.scala`**: Introdução ao `LazyList` do Scala, mostrando avaliação sob demanda
+- **`MyLazyList.scala`**: Implementação customizada de uma lista preguiçosa com pattern matching
 
-2. **Abrindo o projeto no DevContainer**:
-   - Abra o VS Code na pasta deste projeto.
-   - Clique no canto inferior esquerdo (><) e selecione "Reabrir no Container" (ou use o comando `Dev Containers: Reopen in Container`).
-   - Aguarde o container ser criado e inicializado.
+#### Técnicas avançadas
+- **`MemoizedFibonacci.scala`**: Implementa memoização manual no cálculo de Fibonacci
+- **`ShortCircuit.scala`**: Demonstra short-circuit evaluation e implementação de operadores lógicos customizados
+- **`NthPrime.scala`**: Compara busca de números primos usando avaliação estrita vs preguiçosa
+- **`Sales.scala`**: Exemplo prático de uso de valores lazy em um contexto de relatórios de vendas
 
-3. **Utilizando as ferramentas**:
-   - O terminal já estará configurado com Scala e SBT.
-   - Use o comando `sbt` para compilar, rodar e testar seus programas.
-   - A extensão Metals estará ativa, oferecendo recursos como autocompletar, navegação de código e sugestões.
+### Como estudar e experimentar
 
-4. **Executando seu código**:
-   - No terminal, utilize:
-     - `sbt compile` para compilar o projeto.
-     - `sbt run` para executar o programa principal.
-     - `sbt test` para rodar os testes (se houver).
+1. **Leia primeiro os comentários**: Cada arquivo começa com uma explicação detalhada do conceito abordado
+2. **Execute os exemplos**: Use `sbt run` e escolha o exemplo desejado no menu
+3. **Observe as mensagens de debug**: Os exemplos incluem `println` estratégicos para mostrar quando computações são realizadas
+4. **Modifique e experimente**: Altere os exemplos para testar diferentes cenários
+5. **Use o REPL**: Teste trechos menores com `scala` ou `sbt console`
 
-## Usando o Scala REPL
+### Conceitos importantes demonstrados
 
-O **Scala REPL** (Read-Eval-Print Loop) é um interpretador interativo que permite testar pequenos trechos de código Scala rapidamente, sem precisar criar arquivos ou compilar o projeto inteiro.
+- **Lazy Evaluation**: Computações são adiadas até serem necessárias
+- **Memoization**: Resultados são cached para evitar recomputação
+- **Call-by-name vs Call-by-value**: Diferentes momentos de avaliação de argumentos
+- **Call-by-need**: Combinação de call-by-name com memoização
+- **Short-circuit**: Avaliação condicional em operações lógicas
+- **Infinite sequences**: Estruturas infinitas usando avaliação preguiçosa
 
-Para abrir o REPL dentro do DevContainer (no Codespaces ou localmente):
+### Dicas para maximizar o aprendizado
 
-1. Abra o terminal integrado do VS Code.
-2. Digite o comando:
-   
-   ```bash
-   scala
-   ```
-   ou, se preferir usar o SBT console (com dependências do projeto):
-   ```bash
-   sbt console
-   ```
-3. Você poderá digitar comandos Scala e ver o resultado imediatamente.
+- Execute os exemplos múltiplas vezes para observar os padrões
+- Compare os tempos de execução entre versões eager e lazy
+- Experimente modificar os valores e observar como isso afeta o comportamento
+- Use o debugger do VS Code para acompanhar o fluxo de execução step-by-step
 
-O REPL é útil para experimentar funções, testar expressões e aprender Scala de forma interativa.
-
-## Dicas
-- Sempre que atualizar dependências ou arquivos de configuração, reinicie o container para garantir que tudo funcione corretamente.
-- Consulte a documentação do [Metals](https://scalameta.org/metals/) e do [SBT](https://www.scala-sbt.org/) para tirar dúvidas sobre as ferramentas.
-
----
-
-Qualquer dúvida, entre em contato com o professor ou com o grupo de colegas da disciplina.

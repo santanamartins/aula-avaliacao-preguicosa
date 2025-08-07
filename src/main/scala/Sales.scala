@@ -1,8 +1,11 @@
 
+
 package sales
 
-// This file demonstrates the use of lazy values in a real-world context (sales report).
-// Expensive calculations (sum, average, max) are only performed if needed, and only once.
+/*
+ * This file demonstrates the use of lazy values in a real-world context (sales report).
+ * Expensive calculations (sum, average, max) are only performed if needed, and only once.
+ */
 
 case class SalesReport(sales: List[Double]) {
     // Lazy value: total sales are only calculated if accessed
